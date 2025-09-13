@@ -10,6 +10,10 @@ function Todo() {
       setTask("");
     }
   }
+  function edit(index){
+    setTask(list[index])
+    setList(list.filter((_,ind)=>ind !== index))
+  }
 
   function del(index) {
     setList(list.filter((_, ind) => ind !== index));
@@ -33,7 +37,7 @@ function Todo() {
         >
           Add
         </button>
-      </div>
+      </div> 
 
       <ul className="w-full max-w-md space-y-3">
         {list.map((item, ind) => (
@@ -42,6 +46,8 @@ function Todo() {
             className="flex justify-between items-center bg-white p-3 rounded-lg shadow"
           >
             <span className="text-gray-700">{item}</span>
+            <button onClick={()=>edit(ind)}
+              className="px-3 py-1 bg-slate-400 text-white rounded-lg hover:bg-slate-600 transition">Edit</button>
             <button
               onClick={() => del(ind)}
               className="px-3 py-1 bg-zinc-400 text-white rounded-lg hover:bg-zinc-600 transition"
